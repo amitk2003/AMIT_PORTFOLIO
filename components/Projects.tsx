@@ -17,87 +17,66 @@ const projects: Project[] = [
     title: "Intrusion Detection System (Real-Time Computer Vision)",
     tech: ["YOLOv8", "OpenCV", "Python", "Twilio API"],
     description:
-      "Developed a real-time intrusion detection system using YOLO with robust face recognition, multi-person tracking, and environment resilience. Implemented alert automation with WhatsApp + email notifications, tested across low-light, occlusion, and motion-blur scenarios.",
+      "Developed a real-time intrusion detection system with YOLO, face recognition, multi-person tracking, and automated WhatsApp + email alerts.",
     github: "https://github.com/amitk2003/Intrusion_detection_icps_project",
-    live: "",
   },
   {
     title: "Books Unbound — Full-Stack E-Commerce Platform",
-    tech: ["React", "Node.js", "MongoDB", "JWT", "Stripe", "Tailwind CSS"],
+    tech: ["React", "Node.js", "MongoDB", "JWT", "Stripe"],
     description:
-      "Built a secure bookstore platform with Google OAuth + JWT auth, user dashboards, favorites, purchase history, and live Stripe-based checkout. Implemented role-based access control with dedicated admin workflows and optimized DB queries for scalable performance.",
+      "Secure bookstore with Google OAuth, real payments (Stripe), admin panel, and full authentication system.",
     github: "https://github.com/amitk2003/books-unbound",
-    live: "",
   },
   {
     title: "AI Interview Helper Bot",
-    tech: ["WebRTC", "Grok API", "OpenAI", "Express", "MongoDB"],
+    tech: ["WebRTC", "OpenAI", "Express", "MongoDB","React Js"],
     description:
-      "Designed an AI-driven platform that generates adaptive interview questions, records candidate responses using WebRTC, and evaluates speech using real-time transcription and LLM-based scoring insights for automated assessments.",
+      "AI-powered interview system generating adaptive questions and analyzing speech with LLM scoring.",
     github: "https://github.com/amitk2003/AI-INTERVIEW-HELPER",
-    live: "",
   },
   {
     title: "Language Identification Model + Research",
     tech: ["Machine Learning", "TF-IDF", "Random Forest", "SVM"],
     description:
-      "Built a multilingual classification model using TF-IDF, FFT-based linguistic feature extraction, and ML classification techniques. Achieved up to 96% accuracy across 17 languages, benchmarked across multiple ML models.",
+      "Multilingual text classifier achieving up to 96% accuracy across 17 languages with feature engineering.",
     github: "https://github.com/Mahesh-git888/Language_Classification_Model",
-    live: "https://drive.google.com/file/d/1111ezucZdf91crW3u2w-zjE-eJWvvjbW/view?usp=drive_link",
+    live: "https://drive.google.com",
   },
   {
-    title: "Tasty Track — Full-Stack Food Delivery Platform",
-    tech: ["React", "Node.js", "MongoDB", "JWT", "Tailwind CSS"],
+    title: "Tasty Track — Food Delivery Platform",
+    tech: ["React", "Node.js", "MongoDB", "JWT","Express"],
     description:
-      "Developed a food delivery platform enabling users to explore dishes, authenticate securely, and maintain personalized order history. Implemented JWT authentication, role management, and a seamless UI for ordering workflows.",
+      "Food ordering platform with authentication, menu filtering, role-based UI, and secure routes.",
     github: "https://github.com/amitk2003/Tasty_Track",
     live: "https://tasty-track-six.vercel.app/",
   },
   {
     title: "Government School Portal — Social Impact Project",
-    tech: ["React", "Express", "MongoDB", "Tailwind CSS", "Multer"],
+    tech: ["React", "Express", "MongoDB", "Multer"],
     description:
-      "Built a school portal for Rajasthan government to support free education programs. Designed modules like Admissions, Faculty, Toppers, Gallery, and file uploads — enabling 100+ digital enrollments.",
+      "School portal for Rajasthan government with admissions, gallery, and teacher dashboards.",
     github: "https://github.com/amitk2003/Rajasthan-government-school",
     live: "https://rajasthan-government-school.vercel.app/",
   },
-  {
-    title: "Event Management Platform",
-    tech: ["Django", "SQLite", "JavaScript", "Bootstrap", "jQuery"],
-    description:
-      "Developed a complete event planning system with authentication, CRUD operations, reward workflows, and overlay-based UI — improving event planning efficiency by ~40%.",
-    github: "https://github.com/amitk2003/amit_innovators",
-    live: "",
-  },
 ];
-const fadeUp = {
-  hidden: { opacity: 0, y: 15 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
 
 export default function Projects() {
   return (
     <SectionWrapper id="projects" subtitle="Projects" title="Things I've Built">
-      <div className="space-y-6">
+      <div className="space-y-6 px-3 sm:px-0">
         {projects.map((project, index) => (
           <motion.article
             key={project.title}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            style={{ pointerEvents: "auto",background:" bg-[var(--card)]" }}
+            viewport={{ once: true, amount: 0.2 }}
+            style={{ pointerEvents: "auto" }}
             className="
-              rounded-xl border
-              border-slate-300 dark:border-slate-700
-              shadow-md p-6
-              hover:shadow-lg hover:-translate-y-1
-              transition
-            " 
+              rounded-xl border border-slate-300 dark:border-slate-700 
+              shadow-md p-6 bg-[var(--card)]
+              hover:shadow-xl hover:scale-[1.02] transition duration-300
+            "
           >
             <div className="flex flex-col md:flex-row justify-between gap-4">
 
@@ -117,6 +96,7 @@ export default function Projects() {
                   {project.description}
                 </p>
 
+                {/* TECH TAGS */}
                 <div className="mt-3 flex flex-wrap gap-2 text-xs">
                   {project.tech.map((tech) => (
                     <span
@@ -136,16 +116,14 @@ export default function Projects() {
 
               {/* RIGHT BLOCK - LINKS */}
               <div className="flex flex-col gap-2 text-sm items-start">
-
                 {project.live && (
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="
-                      flex items-center gap-1
-                      text-blue-600 dark:text-blue-400
-                      hover:text-blue-800 dark:hover:text-blue-300
+                      flex items-center gap-1 text-blue-600 dark:text-blue-400
+                      hover:text-blue-800 dark:hover:text-blue-300 transition
                     "
                   >
                     <FiExternalLink /> Live Demo
@@ -160,7 +138,7 @@ export default function Projects() {
                     className="
                       flex items-center gap-1
                       text-slate-700 dark:text-slate-300
-                      hover:text-black dark:hover:text-white
+                      hover:text-black dark:hover:text-white transition
                     "
                   >
                     <FiGithub /> GitHub Repo
@@ -168,7 +146,7 @@ export default function Projects() {
                 )}
               </div>
             </div>
-          </motion.article> 
+          </motion.article>
         ))}
       </div>
     </SectionWrapper>
