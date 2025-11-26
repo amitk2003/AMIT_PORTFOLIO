@@ -7,9 +7,7 @@ const container: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.18,
-    },
+    transition: { staggerChildren: 0.18 },
   },
 };
 
@@ -23,12 +21,34 @@ const buttonHover: Variants = {
   hover: { scale: 1.05 },
 };
 
+// Floating + hover animation for image
+const imageMotion: Variants = {
+  initial: { opacity: 0, y: 20, scale: 0.9 },
+  animate: {
+    opacity: 1,
+    y: [0, -10, 0], // floating motion
+    scale: 1,
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      repeatType: "mirror",
+      ease: "easeInOut",
+    },
+  },
+  hover: {
+    scale: 1.08,
+    rotate: 2,
+    transition: { duration: 0.25 },
+  },
+};
+
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="max-w-5xl px-4 mx-auto py-20 flex flex-col md:flex-row items-center gap-12"
+      className="max-w-6xl px-5 mx-auto py-20 flex flex-col md:flex-row items-center gap-12"
     >
+      {/* LEFT SIDE CONTENT */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -37,24 +57,23 @@ export default function Hero() {
       >
         <motion.h1
           variants={fadeUp}
-          className="text-4xl md:text-5xl font-bold leading-tight"
+          className="text-4xl md:text-6xl font-bold leading-tight tracking-tight"
         >
           Building Intelligent Software that Scales.
         </motion.h1>
 
         <motion.p
           variants={fadeUp}
-          className="mt-4 text-lg text-slate-600 leading-relaxed"
+          className="mt-5 text-lg text-slate-600 leading-relaxed"
         >
-          Hi, I’m <span className="font-semibold text-black-700">Amit Kumar</span> —  
-          a Full-Stack Developer and Machine Learning Engineer focused on 
-          designing scalable systems and meaningful digital experiences.
+          Hi, I’m <span className="font-bold text-grey-900">Amit Kumar</span> —
+          a Full-Stack Developer and Machine Learning Engineer focused on
+          scalable architectures and AI-powered experiences.
         </motion.p>
 
-        <motion.p variants={fadeUp} className="mt-3 text-slate-600">
-          I've worked across AI automation, ML research at DRDO, fintech backend 
-          engineering, and product development through real-world internships and 
-          deployed applications.
+        <motion.p variants={fadeUp} className="mt-2 text-slate-600 text-md">
+          I've worked across AI automation, ML applied research, backend
+          engineering, and real-world product deployment.
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-6 flex gap-4">
@@ -80,18 +99,27 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
+      {/* IMAGE BLOCK */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="w-52 h-52 overflow-hidden rounded-2xl shadow-md"
+        variants={imageMotion}
+        initial="initial"
+        animate="animate"
+        whileHover="hover"
+        className="
+          relative 
+          rounded-3xl 
+          shadow-xl 
+          overflow-hidden 
+          cursor-pointer
+          w-60 h-60 md:w-80 md:h-80
+          bg-gradient-to-br from-slate-200 to-slate-50
+        "
       >
         <Image
           src="/amit_latest.jpg"
           alt="Amit Kumar"
-          width={700}
-          height={700}
-          className="object-cover w-full h-full"
+          fill
+          className="object-cover transition-all duration-500"
         />
       </motion.div>
     </section>
