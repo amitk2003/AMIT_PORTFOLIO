@@ -60,6 +60,7 @@ const experienceData: ExperienceItem[] = [
   },
 ];
 
+
 export default function Experience() {
   return (
     <SectionWrapper
@@ -67,7 +68,7 @@ export default function Experience() {
       subtitle="Experience"
       title="Where I've Worked"
     >
-      <ol className="relative border-l border-slate-300 space-y-10 ml-3">
+      <ol className="relative border-l border-slate-400 dark:border-slate-700 space-y-10 ml-3">
         {experienceData.map((exp, index) => (
           <motion.li
             key={index}
@@ -78,35 +79,46 @@ export default function Experience() {
             className="relative ml-4"
           >
             {/* Timeline dot */}
-            <span className="absolute -left-3 w-3 h-3 rounded-full bg-slate-500"></span>
+            <span className="absolute -left-3 w-3 h-3 rounded-full bg-slate-600 dark:bg-slate-300"></span>
 
-            <div className="bg-white border rounded-xl shadow-sm p-6">
+            {/* CARD */}
+            <div className="
+                
+                border border-slate-300 dark:border-slate-700
+                rounded-xl shadow-md p-6
+              " style={{ backgroundColor: "var(--card)" }}>
               <div className="flex flex-col md:flex-row justify-between gap-2">
-                <h3 className="font-semibold text-slate-900 text-lg">{exp.role}</h3>
-                <span className="text-sm text-slate-500">{exp.duration}</span>
+                <h3 className="font-semibold  text-lg" style={{ color: "var(--foreground)" }}
+>
+                  {exp.role}
+                </h3>
+
+                <span className="text-sm text-slate-600 dark:text-slate-300">
+                  {exp.duration}
+                </span>
               </div>
 
-              <p className="text-sm mt-1 text-slate-600 font-medium">
+              <p className="text-sm mt-1 text-slate-700 dark:text-slate-300 font-medium">
                 {exp.company} ・ {exp.location}
               </p>
 
-              <ul className="mt-4 text-sm text-slate-600 space-y-2">
+              <ul className="mt-4 text-sm text-slate-700 dark:text-slate-300 space-y-2">
                 {exp.bullets.map((point, i) => (
                   <li key={i} className="leading-relaxed flex gap-2">
-                    <span className="text-slate-500">•</span>
+                    <span className="text-slate-500 dark:text-slate-400">•</span>
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* 🔥 Smart Link Section */}
+              {/* LINK SECTION */}
               <div className="mt-4 flex gap-4 text-sm items-center">
                 {exp.github ? (
                   <a
                     href={exp.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-gray-700 hover:text-black cursor-pointer"
+                    className="flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white"
                   >
                     <FiGithub /> GitHub
                   </a>
@@ -117,14 +129,14 @@ export default function Experience() {
                     href={exp.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-blue-600 hover:text-blue-800 cursor-pointer"
+                    className="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                   >
                     <FiExternalLink /> Live Demo
                   </a>
                 ) : null}
 
                 {!exp.github && !exp.live && (
-                  <span className="flex items-center gap-1 text-slate-500 text-xs italic">
+                  <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs italic">
                     <FiLock /> Work Not Public
                   </span>
                 )}

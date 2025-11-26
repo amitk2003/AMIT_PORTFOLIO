@@ -71,6 +71,7 @@ const projects: Project[] = [
   },
 ];
 
+
 export default function Projects() {
   return (
     <SectionWrapper id="projects" subtitle="Projects" title="Things I've Built">
@@ -82,22 +83,43 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
-            style={{ pointerEvents: "auto" }}
-            className="rounded-xl border bg-white shadow-sm p-6 hover:-translate-y-1 hover:shadow-md transition"
+            style={{ pointerEvents: "auto",background:" bg-[var(--card)]" }}
+            className="
+              rounded-xl border
+              border-slate-300 dark:border-slate-700
+              shadow-md p-6
+              hover:shadow-lg hover:-translate-y-1
+              transition
+            " 
           >
             <div className="flex flex-col md:flex-row justify-between gap-4">
 
               {/* LEFT BLOCK */}
               <div>
-                <h3 className="text-lg font-semibold text-slate-900">{project.title}</h3>
+                <h3
+                  className="text-lg font-semibold"
+                  style={{ color: "var(--foreground)" }}
+                >
+                  {project.title}
+                </h3>
 
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{project.description}</p>
+                <p
+                  className="mt-2 text-sm leading-relaxed"
+                  style={{ color: "var(--foreground)", opacity: 0.8 }}
+                >
+                  {project.description}
+                </p>
 
                 <div className="mt-3 flex flex-wrap gap-2 text-xs">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 border rounded-full text-slate-600 bg-slate-100"
+                      className="
+                        px-2 py-1 rounded-full border
+                        border-slate-300 dark:border-slate-600
+                        text-slate-700 dark:text-slate-300
+                        bg-white/60 dark:bg-black/20
+                      "
                     >
                       {tech}
                     </span>
@@ -107,12 +129,17 @@ export default function Projects() {
 
               {/* RIGHT BLOCK - LINKS */}
               <div className="flex flex-col gap-2 text-sm items-start">
-                {project.live && project.live !== "" && (
+
+                {project.live && (
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-blue-600 hover:text-blue-800 cursor-pointer"
+                    className="
+                      flex items-center gap-1
+                      text-blue-600 dark:text-blue-400
+                      hover:text-blue-800 dark:hover:text-blue-300
+                    "
                   >
                     <FiExternalLink /> Live Demo
                   </a>
@@ -123,7 +150,11 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-gray-700 hover:text-black cursor-pointer"
+                    className="
+                      flex items-center gap-1
+                      text-slate-700 dark:text-slate-300
+                      hover:text-black dark:hover:text-white
+                    "
                   >
                     <FiGithub /> GitHub Repo
                   </a>
