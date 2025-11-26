@@ -15,7 +15,7 @@ import {
 interface ProfileItem {
   label: string;
   url: string;
-  icon: JSX.Element;
+  icon: React.ReactNode;
 }
 
 // 👉 You can update links anytime — UI automatically updates
