@@ -46,7 +46,7 @@ export default function Hero() {
           variants={fadeUp}
           className="mt-4 text-lg text-slate-600 leading-relaxed"
         >
-          Hi, I’m <span className="font-semibold text-black">Amit Kumar</span> —  
+          Hi, I’m <span className="font-semibold text-black-700">Amit Kumar</span> —  
           a Full-Stack Developer and Machine Learning Engineer focused on 
           designing scalable systems and meaningful digital experiences.
         </motion.p>
