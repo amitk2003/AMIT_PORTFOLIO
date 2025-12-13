@@ -67,7 +67,7 @@ export default function Hero() {
           className="mt-5 text-lg text-slate-600 leading-relaxed"
         >
           Hi, I’m <span className="font-bold text-grey-900">Amit Kumar</span> —
-          a Full-Stack Developer and Machine Learning Engineer focused on
+          a Full-Stack Developer ,Data scientist and Machine Learning Engineer focused on
           scalable architectures and AI-powered experiences.
         </motion.p>
 

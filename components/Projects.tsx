@@ -58,6 +58,20 @@ const projects: Project[] = [
     github: "https://github.com/amitk2003/Rajasthan-government-school",
     live: "https://rajasthan-government-school.vercel.app/",
   },
+  {
+    title:"Portfolio risk management system (Data Science )",
+    tech: ["Python", "Pandas", "NumPy", "Matplotlib","Scikit-learn","Catboost"],
+    description:"Analyzed five years of financial time-series data to examine volatility patterns, risk-adjusted returns, and inter-asset correlation structures, providing insights into investment risk and asset behavior. The analysis was conducted using Python, with Pandas and NumPy for time-series data manipulation, Matplotlib and Seaborn for statistical visualization, and financial/statistical techniques for risk assessment and trend analysis. Key metrics and insights were made accessible to non-technical stakeholders by building and deploying an interactive Streamlit dashboard, enabling intuitive exploration of risk measures, temporal trends, and comparative asset performance.",
+    github:"https://github.com/amitk2003/portfolio_risk_management",
+    live:"https://portfolioriskmanagement-8k73cses2fp5rhct4dgmym.streamlit.app/"
+  },
+  {
+    title:"Customer Churn Prediction (Credit Risk style classification)",
+    tech:["python","Exploratory Data Analysis","Feature Engineering","Machine Learning","XGBoost"],
+    description:"Analyzed a dataset of 7,000+ customers containing demographic, usage, and billing attributes to identify key drivers of customer churn, analogous to credit behavioral risk analysis. The project was implemented using Python, leveraging Pandas and NumPy for data processing, Matplotlib and Seaborn for exploratory data analysis and visualization, and scikit-learn for preprocessing, feature engineering, and model evaluation. Class imbalance was handled using SMOTE from the imbalanced-learn library. Built and compared Logistic Regression, XGBoost, and CatBoost models using precision, recall, and F1-score as evaluation metrics. Finally, generated actionable customer risk segments (High, Medium, Low) and deployed the results through an interactive Streamlit dashboard to support stakeholder decision-making.",
+    github:"https://github.com/amitk2003/customer_churn_prediction",
+    live:"https://customerchurnprediction-ypeeneexjhihnu8fjks7z4.streamlit.app/",
+  }
 ];
 
 export default function Projects() {

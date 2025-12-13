@@ -16,7 +16,7 @@ interface ExperienceItem {
 
 const experienceData: ExperienceItem[] = [
   {
-    role: "Full-Stack Developer Intern",
+    role: "Full stack Development Intern",
     company: "Unified Mentor (Ed-Tech)",
     duration: "Feb 2025 – Apr 2025",
     location: "Remote",

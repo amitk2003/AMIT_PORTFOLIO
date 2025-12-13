@@ -6,8 +6,16 @@ const skillGroups = [
     items: ["React", "Next.js", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS"],
   },
   {
+    category:"Data Science & ML",
+    items:["python", "pandas", "numpy", "scikit-learn", "matplotlib", "seaborn", "tensorflow","Exploratory Data Analysis","Feature Engineering","Model Deployment"],
+  },
+  {
     category: "Backend",
     items: ["Node.js", "Express", "MongoDB", "Mongoose", "REST APIs"],
+  },
+  {
+    category:"Devops & cloud",
+    items:["AWS (EC2,s3)","vercel","ci-cd pipelines,version control(git and github)","docker"]
   },
   {
     category: "Tools & Others",
