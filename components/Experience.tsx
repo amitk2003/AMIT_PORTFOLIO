@@ -15,21 +15,7 @@ interface ExperienceItem {
 }
 
 const experienceData: ExperienceItem[] = [
-  {
-    role: "Full stack Development Intern",
-    company: "Unified Mentor (Ed-Tech)",
-    duration: "Feb 2025 – Apr 2025",
-    location: "Remote",
-    bullets: [
-      "Built reusable and modular UI components using React.js, improving scalability across dashboards and learning modules.",
-      "Integrated backend services with frontend components to support authentication, user progress tracking, and course access workflows.",
-      "Implemented JWT-based secure authentication and RBAC to protect platform data across students, mentors, and admins.",
-      "Designed optimized MongoDB schemas for user, session logs, and learning modules to improve data retrieval and maintainability.",
-      "Reduced unnecessary API calls improving overall system performance and learner interaction experience by ~20%.",
-    ],
-    github: "", // intentionally empty (no repo)
-    live: "",
-  },
+ 
   {
     role: "AI/ML Research Intern",
     company: "NSTL — DRDO",
