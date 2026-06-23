@@ -41,11 +41,6 @@ const profiles: ProfileItem[] = [
     icon: <SiHackerrank className="text-xl text-green-500" />,
   },
   {
-    label: "Codeforces",
-    url: "https://codeforces.com/profile/amiit_kumar",
-    icon: <SiCodeforces className="text-xl text-indigo-600" />,
-  },
-  {
     label: "Kaggle",
     url: "https://www.kaggle.com/amitk23",
     icon: <SiKaggle className="text-xl text-blue-500" />,

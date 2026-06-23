@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "#hero", label: "Home" },
@@ -11,45 +12,79 @@ const navLinks = [
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
-  { href: "#resume", label: "Resume" }
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -50% 0px" }
+    );
+
+    navLinks.forEach((link) => {
+      const id = link.href;
+      if (id !== "#resume") { // Resume might just be a download link or another page
+        const el = document.querySelector(id);
+        if (el) observer.observe(el);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="
-      sticky top-0 z-30
-      backdrop-blur-lg border-b
-      
-      border-slate-300 dark:border-slate-700
-    " style={{background:"bg-[var(--card)]/80"}}>
-      <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+    <header className="fixed top-0 inset-x-0 z-50 px-4 py-3">
+      <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-3 rounded-full border border-slate-200/50 dark:border-slate-700/50 bg-white/70 dark:bg-black/60 backdrop-blur-xl shadow-sm">
         
         {/* LOGO */}
-        <Link href="#hero" className="text-lg font-semibold "style={{ color: "var(--foreground)" }}>
-          Amit Kumar
+        <Link href="#hero" className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Amit<span className="text-blue-500">.</span>
         </Link>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-6 text-sm " style={{ color: "var(--foreground)" }}>
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative hover:text-blue-500 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-blue-500 hover:after:w-full after:transition-all after:duration-300" 
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="hidden md:flex gap-1 items-center">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setActiveSection(link.href)}
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  isActive ? "text-blue-600 dark:text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-active"
+                    className="absolute inset-0 bg-blue-50 dark:bg-white/10 rounded-full -z-10"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                {link.label}
+              </a>
+            );
+          })}
         </div>
+
+
 
         {/* MOBILE BUTTON */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden border border-slate-400 dark:border-slate-600 p-2 rounded-lg " style={{ color: "var(--foreground)" }}
+          className="md:hidden p-2 -mr-2 text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white transition-colors"
+          aria-label="Toggle Menu"
         >
-          ☰
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
@@ -57,21 +92,31 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: "auto" }}
-            exit={{ height: 0 }}
-            className=" border-b border-slate-300 dark:border-slate-700 md:hidden"
-          style={{backgroundColor: "var(--card)",color:"dark" }}>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="block px-4 py-3 text-sm  hover:bg-slate-100 dark:hover:bg-slate-800 transition" style={{ color: "var(--foreground)" }}
-              >
-                {link.label}
-              </a>
-            ))}
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-20 inset-x-4 p-4 rounded-2xl border border-slate-200/50 dark:border-slate-700/50 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl shadow-xl md:hidden flex flex-col gap-2"
+          >
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => {
+                    setOpen(false);
+                    setActiveSection(link.href);
+                  }}
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                    isActive ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+
           </motion.div>
         )}
       </AnimatePresence>

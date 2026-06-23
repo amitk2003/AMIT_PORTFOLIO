@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <Navbar />
       <Hero />
-      <Resume/>
+      {/* <Resume/> */}
       <About />
       <Skills />
       <CodingProfiles/>

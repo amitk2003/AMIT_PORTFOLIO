@@ -28,12 +28,12 @@ const experienceData: ExperienceItem[] = [
       "Followed modular software engineering practices including unit testing, version control, logging, and reproducible architecture.",
     ],
     github: "https://github.com/amitk2003/DRDO_INTERNSHIP_CODE",
-    live: "https://docs.google.com/document/d/1nnrOl-mWqAMjIQC1AL_mrch-0DrHK1OM/edit?usp=sharing&ouid=117885701390504352452&rtpof=true&sd=true", // no live deployment
+    live: "https://docs.google.com/document/d/1nnrOl-mWqAMjIQC1AL_mrch-0DrHK1OM/edit?usp=sharing&ouid=117885701390504352452&rtpof=true&sd=true",
   },
   {
     role: "Full-Stack Developer — Social Impact Project",
     company: "Rajasthan Government School",
-    duration: "Aug 2025 – Sept 2025",
+    duration: "Aug 2025 - Sept 2025",
     location: "Rajasthan, India",
     bullets: [
       "Developed a full-stack school portal supporting and promoting free education access for underserved rural students.",
@@ -46,7 +46,6 @@ const experienceData: ExperienceItem[] = [
   },
 ];
 
-
 export default function Experience() {
   return (
     <SectionWrapper
@@ -54,75 +53,73 @@ export default function Experience() {
       subtitle="Experience"
       title="Where I've Worked"
     >
-      <ol className="relative border-l border-slate-400 dark:border-slate-700 space-y-10 ml-3">
+      <ol className="relative border-l border-slate-300 dark:border-slate-700 space-y-10 ml-3">
         {experienceData.map((exp, index) => (
           <motion.li
             key={index}
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="relative ml-4"
+            transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative ml-6 group"
           >
             {/* Timeline dot */}
-            <span className="absolute -left-3 w-3 h-3 rounded-full bg-slate-600 dark:bg-slate-300"></span>
+            <span className="absolute -left-[33px] w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-[var(--background)] group-hover:bg-blue-500 transition-colors duration-300 z-10" />
 
             {/* CARD */}
             <div className="
-                
-                border border-slate-300 dark:border-slate-700
-                rounded-xl shadow-md p-6
-              " style={{ backgroundColor: "var(--card)" }}>
+                border border-slate-200 dark:border-slate-700
+                rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 bg-white dark:bg-[var(--card)]
+              "
+            >
               <div className="flex flex-col md:flex-row justify-between gap-2">
-                <h3 className="font-semibold  text-lg" style={{ color: "var(--foreground)" }}
->
+                <h3 className="font-bold text-xl text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {exp.role}
                 </h3>
-
-                <span className="text-sm text-slate-600 dark:text-slate-300">
+                <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full w-fit">
                   {exp.duration}
                 </span>
               </div>
 
-              <p className="text-sm mt-1 text-slate-700 dark:text-slate-300 font-medium">
-                {exp.company} ・ {exp.location}
+              <p className="text-sm mt-2 text-slate-700 dark:text-slate-300 font-semibold tracking-wide uppercase">
+                {exp.company} <span className="text-slate-400">・</span> {exp.location}
               </p>
 
-              <ul className="mt-4 text-sm text-slate-700 dark:text-slate-300 space-y-2">
+              <ul className="mt-5 text-sm text-slate-600 dark:text-slate-300 space-y-3">
                 {exp.bullets.map((point, i) => (
-                  <li key={i} className="leading-relaxed flex gap-2">
-                    <span className="text-slate-500 dark:text-slate-400">•</span>
+                  <li key={i} className="leading-relaxed flex gap-3 items-start">
+                    <span className="text-blue-500 dark:text-blue-400 mt-1 flex-shrink-0">✦</span>
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
 
               {/* LINK SECTION */}
-              <div className="mt-4 flex gap-4 text-sm items-center">
-                {exp.github ? (
+              <div className="mt-6 flex flex-wrap gap-4 text-sm items-center">
+                {exp.github && (
                   <a
                     href={exp.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-slate-700 dark:text-slate-200 hover:text-black dark:hover:text-white"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-black dark:hover:text-white transition-colors font-medium"
                   >
                     <FiGithub /> GitHub
                   </a>
-                ) : null}
+                )}
 
-                {exp.live ? (
+                {exp.live && (
                   <a
                     href={exp.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors font-medium"
                   >
                     <FiExternalLink /> Live Demo
                   </a>
-                ) : null}
+                )}
 
                 {!exp.github && !exp.live && (
-                  <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs italic">
+                  <span className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-xs italic font-medium">
                     <FiLock /> Work Not Public
                   </span>
                 )}
